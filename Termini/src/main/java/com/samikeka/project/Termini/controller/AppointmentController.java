@@ -18,7 +18,6 @@ public class AppointmentController {
     //merr listen e krejt termineve qe jane online
     @GetMapping("/appointment")
     public List<Appointment> allAppointments(){
-
         return appointmentService.getAllAppointment();
     }
     //reservation of an Appointment from end-user

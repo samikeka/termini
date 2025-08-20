@@ -5,7 +5,9 @@ import com.samikeka.project.Termini.repository.AppointmentRepository;
 import com.samikeka.project.Termini.service.IAppointmentService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -19,7 +21,12 @@ public class AppointmentService implements IAppointmentService {
 
     @Override
     public Appointment createAppointment(Appointment appointment) {
-        return appointmentRepository.save(appointment);
+        Appointment oldAppointment = appointmentRepository.findByTimeAppointment(appointment.getTimeAppointment());
+        if (oldAppointment==null){
+            return appointmentRepository.save(appointment);
+        }
+
+       throw new RuntimeException("Nuk mund te besh booking per kete rezervim sepse eshte bere tashme");
     }
 
     @Override
