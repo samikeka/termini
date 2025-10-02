@@ -21,12 +21,22 @@ public class AppointmentService implements IAppointmentService {
 
     @Override
     public Appointment createAppointment(Appointment appointment) {
-        Appointment oldAppointment = appointmentRepository.findByTimeAppointment(appointment.getTimeAppointment());
-        if (oldAppointment==null){
-            return appointmentRepository.save(appointment);
-        }
+        List<Appointment> byFieldLocationAndDateAppointmentAndTimeAppointment = appointmentRepository.findByFieldLocationAndDateAppointmentAndTimeAppointment(appointment.getFieldLocation(),
+                appointment.getDateAppointment(), appointment.getTimeAppointment());
+        LocalTime newStart = appointment.getTimeAppointment();
+        LocalTime newEnd = newStart.plusHours(appointment.getTimeReservedField());
+        
+        //duhet me kqyr per cdo rezervim qe ekziston ne DB nese rezervimi i ri tenton te behet ne keto orare dhe brenda nje ore te refuzohen
+        for (Appointment existing:byFieldLocationAndDateAppointmentAndTimeAppointment){
 
-       throw new RuntimeException("Nuk mund te besh booking per kete rezervim sepse eshte bere tashme");
+            LocalTime existingStart = existing.getTimeAppointment();
+            LocalTime existingEnd = existingStart.plusHours(existing.getTimeReservedField());
+            boolean overlap = newStart.isBefore(existingEnd) && newEnd.isAfter(existingStart);
+            if(overlap){
+                throw new RuntimeException("nuk mund te rezervosh ne kete kohe");
+            }
+        }
+        return appointmentRepository.save(appointment);
     }
 
     @Override

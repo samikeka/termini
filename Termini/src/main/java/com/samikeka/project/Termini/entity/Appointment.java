@@ -1,9 +1,11 @@
 package com.samikeka.project.Termini.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -15,11 +17,18 @@ import java.util.UUID;
 @Setter
 public class Appointment {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
     private UUID appointmentId;
     @ManyToOne
+    @JsonBackReference
     private Field fieldLocation;
     private LocalDate dateAppointment;
     private LocalTime timeAppointment;
+    @Column(nullable = false, columnDefinition = "TINYINT DEFAULT 1")
+    private  Byte timeReservedField=1;
 
 }

@@ -1,0 +1,33 @@
+version: '3.9'
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: termini-mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: termini
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: termini_user
+      MYSQL_PASSWORD: termini_pass
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+#  app:
+#    build: .
+#    container_name: termini-app
+#    restart: always
+#    depends_on:
+#      - mysql
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/termini?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+#      SPRING_DATASOURCE_USERNAME: termini_user
+#      SPRING_DATASOURCE_PASSWORD: termini_pass
+#      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+#      SPRING_JPA_SHOW_SQL: "true"
+#    ports:
+#      - "8080:8080"
+
+volumes:
+  mysql_data:
