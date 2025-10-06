@@ -10,7 +10,7 @@ services:
       MYSQL_USER: termini_user
       MYSQL_PASSWORD: termini_pass
     ports:
-      - "3307:3306"
+      - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
 

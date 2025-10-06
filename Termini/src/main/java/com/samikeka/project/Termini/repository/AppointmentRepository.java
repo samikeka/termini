@@ -13,4 +13,6 @@ public interface AppointmentRepository extends JpaRepository<Appointment, UUID> 
 
 
     List<Appointment> findByFieldLocationAndDateAppointmentAndTimeAppointment(Field fieldLocation, LocalDate dateAppointment, LocalTime timeAppointment);
+
+    List<Appointment> findByFieldLocationAndDateAppointment(Field field, LocalDate dateAppointment);
 }
