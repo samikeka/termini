@@ -26,6 +26,7 @@ public class Field {
     private String city;
     @ManyToOne
     @JsonBackReference
+    @JoinColumn(name = "field_owner_id")
     private User fieldOwner;
     @OneToMany(mappedBy = "fieldLocation")
     @JsonManagedReference

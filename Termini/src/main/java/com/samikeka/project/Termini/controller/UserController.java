@@ -1,6 +1,6 @@
 package com.samikeka.project.Termini.controller;
 
-import com.samikeka.project.Termini.entity.User;
+import com.samikeka.project.Termini.dto.UserDto;
 import com.samikeka.project.Termini.service.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +18,8 @@ public class UserController {
     private final IUserService userService;
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user){
-        return ResponseEntity.created(URI.create("/users/"+userService.createUser(user).getUuid())).body(user);
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto){
+        return ResponseEntity.created(URI.create("/users/"+userService.createUser(userDto).getUuid())).body(userDto);
     }
 
 }
