@@ -7,8 +7,9 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 
-
-    // Entity -> DTO
+    @org.mapstruct.Mapping(
+            target = "role",
+            expression = "java(user.getRole() == null ? \"USER\" : user.getRole().name())")
     UserDto toDto(User user);
 
     // DTO -> Entity

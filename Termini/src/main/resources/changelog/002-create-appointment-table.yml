@@ -1,0 +1,43 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002-create-appointment-table
+      author: sami
+      changes:
+        - createTable:
+            tableName: appointment
+            columns:
+              - column:
+                  name: appointment_id
+                  type: CHAR(36)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: field_location_id
+                  type: CHAR(36)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: date_appointment
+                  type: DATE
+                  constraints:
+                    nullable: true
+              - column:
+                  name: time_appointment
+                  type: TIME
+                  constraints:
+                    nullable: true
+              - column:
+                  name: time_reserved_field
+                  type: TINYINT
+                  defaultValueNumeric: 1
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: appointment
+            baseColumnNames: field_location_id
+            constraintName: fk_appointment_field
+            referencedTableName: fields
+            referencedColumnNames: id
+            onDelete: CASCADE

@@ -1,0 +1,155 @@
+databaseChangeLog:
+- changeSet:
+    id: 1760024107247-1
+    author: Lenovo (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+            name: uuid
+            type: BINARY(16)
+        - column:
+            name: city
+            type: VARCHAR(255)
+        - column:
+            name: name
+            type: VARCHAR(255)
+        tableName: app_user
+- changeSet:
+    id: 1760024107247-2
+    author: Lenovo (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+            name: appointment_id
+            type: BINARY(16)
+        - column:
+            name: date_appointment
+            type: date
+        - column:
+            name: time_appointment
+            type: time
+        - column:
+            constraints:
+              nullable: false
+            defaultValueNumeric: 1
+            name: time_reserved_field
+            type: TINYINT(3)
+        - column:
+            name: field_location_id
+            type: BINARY(16)
+        tableName: appointment
+- changeSet:
+    id: 1760024107247-3
+    author: Lenovo (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+            name: id
+            type: BINARY(16)
+        - column:
+            name: city
+            type: VARCHAR(255)
+        - column:
+            name: location
+            type: VARCHAR(255)
+        - column:
+            name: name
+            type: VARCHAR(255)
+        - column:
+            name: field_owner_uuid
+            type: BINARY(16)
+        - column:
+            name: field_owner_id
+            type: BINARY(16)
+        tableName: fields
+- changeSet:
+    id: 1760024107247-4
+    author: Lenovo (generated)
+    changes:
+    - createIndex:
+        associatedWith: ''
+        columns:
+        - column:
+            name: field_location_id
+        indexName: FK3lydacvif82yhiasuo8i2katq
+        tableName: appointment
+- changeSet:
+    id: 1760024107247-5
+    author: Lenovo (generated)
+    changes:
+    - createIndex:
+        associatedWith: ''
+        columns:
+        - column:
+            name: field_owner_id
+        indexName: FK72rlvrdqwyuyte4sg0geo30ie
+        tableName: fields
+- changeSet:
+    id: 1760024107247-6
+    author: Lenovo (generated)
+    changes:
+    - createIndex:
+        associatedWith: ''
+        columns:
+        - column:
+            name: field_owner_uuid
+        indexName: FKkiq034qp0ggc0r7o40ymuhe6s
+        tableName: fields
+- changeSet:
+    id: 1760024107247-7
+    author: Lenovo (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: field_location_id
+        baseTableName: appointment
+        constraintName: FK3lydacvif82yhiasuo8i2katq
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: RESTRICT
+        onUpdate: RESTRICT
+        referencedColumnNames: id
+        referencedTableName: fields
+        validate: true
+- changeSet:
+    id: 1760024107247-8
+    author: Lenovo (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: field_owner_id
+        baseTableName: fields
+        constraintName: FK72rlvrdqwyuyte4sg0geo30ie
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: RESTRICT
+        onUpdate: RESTRICT
+        referencedColumnNames: uuid
+        referencedTableName: app_user
+        validate: true
+- changeSet:
+    id: 1760024107247-9
+    author: Lenovo (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: field_owner_uuid
+        baseTableName: fields
+        constraintName: FKkiq034qp0ggc0r7o40ymuhe6s
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: RESTRICT
+        onUpdate: RESTRICT
+        referencedColumnNames: uuid
+        referencedTableName: app_user
+        validate: true
+

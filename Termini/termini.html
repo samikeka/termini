@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Termini Pro • UI/UX Prototip</title>
+    <!-- Font i thjeshtë dhe modern -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        body {
+          background: #1e1e1e;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh;
+          font-family: 'Inter', -apple-system, system-ui, sans-serif;
+          padding: 20px;
+        }
+
+        /* Korniza e telefonit për efekt fotografie */
+        .phone-frame {
+          background: #0b0b0b;
+          border-radius: 44px;
+          padding: 12px;
+          box-shadow: 0 30px 50px rgba(0,0,0,0.6), 0 0 0 2px #333;
+          max-width: 400px;
+          width: 100%;
+        }
+
+        .app-container {
+          background: #F8F9FA;
+          border-radius: 34px;
+          overflow: hidden;
+          position: relative;
+          height: 760px;
+          display: flex;
+          flex-direction: column;
+          box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
+        }
+
+        .status-bar {
+          padding: 14px 20px 6px;
+          display: flex;
+          justify-content: space-between;
+          font-size: 13px;
+          font-weight: 600;
+          color: #1E293B;
+          background: #FFFFFF;
+          border-bottom: 1px solid #F1F5F9;
+        }
+
+        .header {
+          padding: 8px 20px 12px;
+          background: #FFFFFF;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-bottom: 1px solid #E2E8F0;
+        }
+        .header h2 {
+          font-size: 22px;
+          font-weight: 700;
+          color: #0F172A;
+          letter-spacing: -0.5px;
+        }
+        .header-icon {
+          font-size: 20px;
+          color: #2C3E50;
+          background: #F1F5F9;
+          padding: 6px;
+          border-radius: 100px;
+        }
+        .location-bar {
+          display: flex;
+          gap: 12px;
+          padding: 10px 20px;
+          background: #FFFFFF;
+          font-size: 14px;
+          font-weight: 500;
+          color: #334155;
+          border-bottom: 1px solid #E2E8F0;
+        }
+        .chip {
+          background: #F1F5F9;
+          padding: 6px 12px;
+          border-radius: 20px;
+          display: flex;
+          align-items: center;
+          gap: 4px;
+        }
+
+        .scroll-area {
+          flex: 1;
+          overflow-y: auto;
+          padding: 16px 20px;
+          background: #F8F9FA;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        .section-title {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-weight: 700;
+          font-size: 17px;
+          color: #1E293B;
+          margin-bottom: 4px;
+        }
+        .badge {
+          background: #F39C12;
+          color: white;
+          font-size: 11px;
+          padding: 2px 8px;
+          border-radius: 20px;
+          font-weight: 600;
+        }
+
+        /* Kartelat e ndeshjeve publike (Killer Feature) */
+        .game-card {
+          background: #FFFFFF;
+          border-radius: 20px;
+          padding: 16px;
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+          border: 1px solid #EDF2F7;
+        }
+        .emoji-big {
+          font-size: 30px;
+          background: #F1F5F9;
+          padding: 10px;
+          border-radius: 14px;
+        }
+        .game-info {
+          flex: 1;
+        }
+        .game-info h4 {
+          font-weight: 700;
+          font-size: 16px;
+        }
+        .game-meta {
+          font-size: 13px;
+          color: #475569;
+          margin: 4px 0;
+        }
+        .progress-wrap {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          margin-top: 6px;
+        }
+        .progress-bar {
+          flex:1;
+          height: 5px;
+          background: #E2E8F0;
+          border-radius: 10px;
+          overflow: hidden;
+        }
+        .progress-fill {
+          width: 80%;
+          height: 100%;
+          background: #2ECC71;
+          border-radius: 10px;
+        }
+        .progress-fill.orange {
+          background: #F39C12;
+        }
+        .join-btn {
+          background: #2ECC71;
+          color: white;
+          font-weight: 700;
+          font-size: 13px;
+          padding: 8px 14px;
+          border-radius: 30px;
+          text-decoration: none;
+          white-space: nowrap;
+          box-shadow: 0 6px 14px rgba(46, 204, 113, 0.25);
+        }
+
+        .divider-text {
+          font-size: 13px;
+          color: #64748B;
+          text-align: center;
+          font-weight: 500;
+        }
+
+        /* Kartelat e fushave */
+        .field-card {
+          background: #FFFFFF;
+          border-radius: 20px;
+          padding: 14px;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          border: 1px solid #EDF2F7;
+        }
+        .slot-info {
+          text-align: right;
+        }
+        .price {
+          font-weight: 700;
+          color: #0F172A;
+        }
+        .book-btn {
+          background: transparent;
+          border: 1.5px solid #2C3E50;
+          color: #2C3E50;
+          font-weight: 700;
+          font-size: 12px;
+          padding: 8px 14px;
+          border-radius: 30px;
+          margin-top: 6px;
+        }
+
+        /* Bottom Nav */
+        .bottom-nav {
+          background: #FFFFFF;
+          display: flex;
+          justify-content: space-around;
+          padding: 12px 16px 20px;
+          border-top: 1px solid #E2E8F0;
+          font-size: 12px;
+          font-weight: 600;
+          color: #64748B;
+        }
+        .nav-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 4px;
+        }
+        .nav-item.active {
+          color: #2ECC71;
+          font-weight: 700;
+        }
+        .nav-icon {
+          font-size: 20px;
+        }
+
+        /* Ekrani 2: Flow i rezervimit */
+        .booking-header {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 8px 20px 12px;
+          background: #FFFFFF;
+        }
+        .time-slots {
+          display: flex;
+          gap: 10px;
+          flex-wrap: wrap;
+        }
+        .slot {
+          background: #FFFFFF;
+          border: 1.5px solid #CBD5E1;
+          padding: 12px 18px;
+          border-radius: 30px;
+          font-weight: 600;
+        }
+        .slot.selected {
+          background: #2C3E50;
+          border-color: #2C3E50;
+          color: white;
+        }
+        .option-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background: #FFFFFF;
+          padding: 14px;
+          border-radius: 16px;
+        }
+        .switch {
+          width: 44px;
+          height: 24px;
+          background: #2ECC71;
+          border-radius: 30px;
+          position: relative;
+        }
+        .confirm-btn {
+          background: #2ECC71;
+          color: white;
+          font-weight: 700;
+          padding: 16px;
+          border-radius: 20px;
+          text-align: center;
+          margin-top: 8px;
+        }
+
+        /* Ekrani 3: Owner */
+        .stats-card {
+          background: #2C3E50;
+          color: white;
+          border-radius: 20px;
+          padding: 18px;
+        }
+        .mini-cal {
+          display: grid;
+          grid-template-columns: repeat(5,1fr);
+          gap: 8px;
+          text-align: center;
+        }
+        .day-item {
+          background: #FFFFFF;
+          padding: 8px;
+          border-radius: 12px;
+          font-weight: 600;
+          border: 1px solid #E2E8F0;
+        }
+    </style>
+</head>
+<body>
+<div class="phone-frame">
+    <div class="app-container">
+
+        <!-- ========= EKRANI 1: ZBULO & LOJËRA PUBLIKE ========= -->
+        <div class="status-bar">
+            <span>9:41</span>
+            <span>📶 🔋 91%</span>
+        </div>
+        <div class="header">
+            <h2>Termini Pro</h2>
+            <span class="header-icon">🔔</span>
+        </div>
+        <div class="location-bar">
+            <div class="chip">📍 Prishtinë ▼</div>
+            <div class="chip">📅 Sot, 5 Maj ▼</div>
+        </div>
+
+        <div class="scroll-area">
+            <!-- Seksioni Killer Feature -->
+            <div class="section-title">
+                <span>🔥 Ndeshje që duan lojtarë</span>
+                <span class="badge">LIVE</span>
+            </div>
+
+            <div class="game-card">
+                <div class="emoji-big">⚽</div>
+                <div class="game-info">
+                    <h4>Fusha "Gjergj Fishta"</h4>
+                    <div class="game-meta">📍 Qendër • 🕒 18:00 - 19:00</div>
+                    <div class="progress-wrap">
+                        <span>👤 8/10</span>
+                        <div class="progress-bar"><div class="progress-fill" style="width:80%"></div></div>
+                    </div>
+                </div>
+                <a href="#" class="join-btn">BASHKOHU</a>
+            </div>
+
+            <div class="game-card">
+                <div class="emoji-big">🏀</div>
+                <div class="game-info">
+                    <h4>Palestra "Arbëria"</h4>
+                    <div class="game-meta">📍 Lakrishte • 🕒 17:00 - 18:30</div>
+                    <div class="progress-wrap">
+                        <span>👤 3/6</span>
+                        <div class="progress-bar"><div class="progress-fill orange" style="width:50%"></div></div>
+                    </div>
+                </div>
+                <a href="#" class="join-btn">BASHKOHU</a>
+            </div>
+
+            <div class="divider-text">— ose rezervo fushë të zbrazët —</div>
+
+            <!-- Fusha e lire -->
+            <div class="field-card">
+                <div>🎾</div>
+                <div style="flex:1">
+                    <strong>Fusha Tenisi "Dardania"</strong>
+                    <div style="font-size:13px;color:#64748B;">⭐ 4.8 (120 vlerësime)</div>
+                </div>
+                <div class="slot-info">
+                    <div>🕒 20:00</div>
+                    <div class="price">10€/orë</div>
+                    <div class="book-btn">REZERVO</div>
+                </div>
+            </div>
+            <div style="height:10px;"></div>
+        </div>
+        <div class="bottom-nav">
+            <div class="nav-item active"><span class="nav-icon">🏠</span> Home</div>
+            <div class="nav-item"><span class="nav-icon">🔍</span> Zbulo</div>
+            <div class="nav-item"><span class="nav-icon">📅</span> Të miat</div>
+            <div class="nav-item"><span class="nav-icon">👤</span> Profili</div>
+        </div>
+    </div>
+</div>
+
+<!-- Hapësirë mes telefonave -->
+<div style="width: 30px;"></div>
+
+<!-- ========= EKRANI 2: REZERVIMI FLOW ========= -->
+<div class="phone-frame">
+    <div class="app-container">
+        <div class="status-bar"><span>9:42</span><span>📶 🔋 90%</span></div>
+        <div class="booking-header">
+            <span style="font-size:20px;">←</span>
+            <strong>Fusha "Gjergj Fishta"</strong>
+        </div>
+        <div class="scroll-area">
+            <div style="font-weight:600;">📅 E hënë, 8 Maj</div>
+            <div class="time-slots">
+                <div class="slot selected">18:00</div>
+                <div class="slot">19:00</div>
+                <div class="slot">21:00</div>
+            </div>
+            <div style="font-size:13px; color:#64748B;">(60 minuta)</div>
+
+            <div style="font-weight:700; margin-top:8px;">⚡ Dëshiron të plotësosh numrin?</div>
+            <div class="option-row">
+                <span>📢 Hape si ndeshje publike</span>
+                <div class="switch"></div>
+            </div>
+            <div class="option-row">
+                <span>👥 Lojtarë që mungojnë</span>
+                <strong>4</strong>
+            </div>
+
+            <div style="background:#F1F5F9;border-radius:16px;padding:14px;">
+                <div style="display:flex;justify-content:space-between;"><span>1 orë fushë</span><strong>25.00€</strong></div>
+                <div style="display:flex;justify-content:space-between;"><span>Lojtarë</span><span>6 konfirmuar + 4 hapur</span></div>
+            </div>
+            <div class="confirm-btn">KONFIRMO & PAGUAJ</div>
+        </div>
+    </div>
+</div>
+
+<!-- ========= EKRANI 3: OWNER DASHBOARD ========= -->
+<div class="phone-frame">
+    <div class="app-container">
+        <div class="status-bar"><span>9:43</span><span>📶 🔋 88%</span></div>
+        <div class="header">
+            <h2>📊 Paneli Im</h2>
+            <span>⚙️</span>
+        </div>
+        <div class="scroll-area">
+            <div class="stats-card">
+                <div style="font-size:14px; opacity:0.8;">Të ardhurat këtë muaj</div>
+                <div style="font-size:32px; font-weight:700;">1,250€</div>
+                <div style="margin-top:6px;">📈 +12% nga muaji i kaluar</div>
+            </div>
+
+            <div class="section-title">📅 Kalendari (5 Maj)</div>
+            <div class="mini-cal">
+                <div class="day-item">08<br>⚽10v</div>
+                <div class="day-item">09<br>⚽12v</div>
+                <div class="day-item">10<br>-</div>
+                <div class="day-item">11<br>-</div>
+                <div class="day-item">12<br>⚽8v(2)</div>
+            </div>
+
+            <div class="section-title">🟢 Rezervimet e sotme</div>
+            <div class="game-card">
+                <div>⚽</div>
+                <div style="flex:1"><strong>18:00 · Klienti: Arben K.</strong><br>6 lojtarë · E paguar ✅</div>
+                <span style="color:#2C3E50;">Menaxho</span>
+            </div>
+            <div class="game-card">
+                <div>🔓</div>
+                <div style="flex:1"><strong>20:00 · Ndeshje Publike</strong><br>5/10 lojtarë · Hapur</div>
+                <span style="color:#2C3E50;">Shiko</span>
+            </div>
+        </div>
+        <div class="bottom-nav">
+            <div class="nav-item active">📅 Kalendari</div>
+            <div class="nav-item">📊 Statistikat</div>
+            <div class="nav-item">💳 Pagesat</div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - include:
+      file: changelog/001-create-app-user-table.yml
+  - include:
+      file: changelog/003-create-fields-table.yml  # fields duhet të krijohet para appointment
+  - include:
+      file: changelog/002-create-appointment-table.yml
+  - include:
+      file: changelog/004-add-email-to-user.yml
+  - include:
+      file: changelog/005-modify-user-column-id.yml

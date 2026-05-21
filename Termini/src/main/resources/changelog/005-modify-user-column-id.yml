@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: ti
+      changes:
+        - modifyDataType:
+            tableName: app_user
+            columnName: uuid
+            newDataType: VARCHAR(36)
+

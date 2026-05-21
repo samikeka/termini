@@ -7,10 +7,7 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface FieldMapper {
 
-
-    // Entity -> DTO
     FieldDto toDto(Field field);
 
-    // DTO -> Entity
     Field toEntity(FieldDto dto);
 }

@@ -1,0 +1,24 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-app-user-table
+      author: sami
+      changes:
+        - createTable:
+            tableName: app_user
+            columns:
+              - column:
+                  name: uuid
+                  type: CHAR(36)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: city
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: true

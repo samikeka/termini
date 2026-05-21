@@ -1,33 +1,21 @@
-version: '3.9'
 services:
-  mysql:
-    image: mysql:8.0
-    container_name: termini-mysql
-    restart: always
+  postgres:
+    image: postgres:16-alpine
+    container_name: termini-postgres
+    restart: unless-stopped
     environment:
-      MYSQL_DATABASE: termini
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_USER: termini_user
-      MYSQL_PASSWORD: termini_pass
+      POSTGRES_DB: termini
+      POSTGRES_USER: termini_user
+      POSTGRES_PASSWORD: termini_pass
     ports:
-      - "3306:3306"
+      - "5432:5432"
     volumes:
-      - mysql_data:/var/lib/mysql
-
-#  app:
-#    build: .
-#    container_name: termini-app
-#    restart: always
-#    depends_on:
-#      - mysql
-#    environment:
-#      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/termini?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-#      SPRING_DATASOURCE_USERNAME: termini_user
-#      SPRING_DATASOURCE_PASSWORD: termini_pass
-#      SPRING_JPA_HIBERNATE_DDL_AUTO: update
-#      SPRING_JPA_SHOW_SQL: "true"
-#    ports:
-#      - "8080:8080"
+      - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U termini_user -d termini" ]
+      interval: 5s
+      timeout: 5s
+      retries: 12
 
 volumes:
-  mysql_data:
+  pg_data:

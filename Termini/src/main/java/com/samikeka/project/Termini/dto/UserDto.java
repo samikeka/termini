@@ -1,17 +1,20 @@
 package com.samikeka.project.Termini.dto;
 
-import com.samikeka.project.Termini.entity.Field;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.List;
-import java.util.UUID;
 
 @Getter
 @Setter
 public class UserDto {
-    private UUID uuid;
+    private Long id;
     private String name;
     private String city;
-    private List<FieldDto> fieldsDto;
+    private String email;
+    /** USER | FIELD_OWNER */
+    private String role;
+    private String ownerIban;
+    private String ownerAccountHolder;
+    private int goals;
+    private int assists;
+    private int mvpCount;
 }

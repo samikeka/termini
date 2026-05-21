@@ -1,0 +1,42 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-fields-table
+      author: sami
+      changes:
+        - createTable:
+            tableName: fields
+            columns:
+              - column:
+                  name: id
+                  type: CHAR(36)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: location
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: city
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: field_owner_id
+                  type: CHAR(36)
+                  constraints:
+                    nullable: true
+
+        - addForeignKeyConstraint:
+            baseTableName: fields
+            baseColumnNames: field_owner_id
+            constraintName: fk_fields_user
+            referencedTableName: app_user
+            referencedColumnNames: uuid
+            onDelete: CASCADE

@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003-add-email-to-user
+      author: sami
+      changes:
+        - addColumn:
+            tableName: app_user
+            columns:
+              - column:
+                  name: email
+                  type: VARCHAR(100)
+
