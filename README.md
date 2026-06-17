@@ -77,7 +77,7 @@ Filters: city, sport type, time of day, region (Kosovo, Albania, North Macedonia
 |------|---------|-----------------|
 | ![Home](docs/screenshots/home.png) | ![Booking](docs/screenshots/booking.png) | ![Owner dashboard](docs/screenshots/owner-dashboard.png) |
 
-Screenshots are from the static UI prototype (`Termini/termini.html`). Replace with live app captures after running locally.
+Screenshots are from the static UI prototype (`termini.html`). Replace with live app captures after running locally.
 
 ### Tech stack
 
@@ -93,11 +93,13 @@ Screenshots are from the static UI prototype (`Termini/termini.html`). Replace w
 ```
 termini/                      # repository root
 ├── README.md
-├── Termini/                  # Spring Boot backend
-│   ├── frontend/             # React app
-│   ├── docker-compose.yml    # Postgres for local dev
-│   ├── src/main/java/        # controllers, services, entities
-│   └── src/main/resources/   # application.properties, changelogs
+├── LICENSE
+├── pom.xml                   # Spring Boot backend
+├── src/main/java/            # controllers, services, entities
+├── src/main/resources/       # application.properties, changelogs
+├── frontend/                 # React app
+├── docker-compose.yml        # Postgres for local dev
+└── docs/screenshots/         # README images
 ```
 
 ### Prerequisites
@@ -119,7 +121,6 @@ cd termini
 #### 2. Start the database (Postgres)
 
 ```bash
-cd Termini
 docker compose up -d
 ```
 
@@ -134,7 +135,7 @@ Default connection (matches `application.properties`):
 
 #### 3. Start the backend
 
-From `Termini/`:
+From the repo root:
 
 ```bash
 ./mvnw spring-boot:run
@@ -155,7 +156,7 @@ On first start, demo data is seeded automatically (users, fields, sample booking
 In a second terminal:
 
 ```bash
-cd Termini/frontend
+cd frontend
 npm install
 npm run dev
 ```
@@ -171,7 +172,7 @@ With the backend running:
 
 ### Configuration
 
-Main settings: `Termini/src/main/resources/application.properties`
+Main settings: `src/main/resources/application.properties`
 
 **Environment variables** (recommended for production):
 
@@ -199,7 +200,7 @@ Main settings: `Termini/src/main/resources/application.properties`
 
 ### Running tests
 
-From `Termini/`:
+From the repo root:
 
 ```bash
 ./mvnw test

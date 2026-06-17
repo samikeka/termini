@@ -10,7 +10,7 @@ PNG previews for the root README:
 
 ## Source
 
-These were generated from the static UI prototype at `Termini/termini.html` (no backend/frontend server required).
+These were generated from the static UI prototype at `termini.html` (no backend/frontend server required).
 
 ## Refresh from the live app
 
