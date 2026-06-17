@@ -218,4 +218,6 @@ Tests use an in-memory H2 database (no Docker required).
 
 ### License
 
-Add a `LICENSE` file before publishing as open source (e.g. MIT).
+This project is licensed under the **MIT License** — see [LICENSE](LICENSE).
+
+You may clone, use, modify, and distribute the code freely, as long as you include the original copyright notice.
